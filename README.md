@@ -1,3 +1,7 @@
+Current references:
+https://www.viget.com/articles/building-a-multi-step-registration-form-with-react/
+https://serverless-stack.com/chapters/load-the-state-from-the-session.html
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
