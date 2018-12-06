@@ -5,10 +5,10 @@ import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 
-import AccountFields from "./containers/AccountFields";
-import SurveyFields from "./containers/SurveyFields";
-import Confirmation from "./containers/Confirmation";
-import Success from "./containers/Success";
+// import AccountFields from "./containers/AccountFields";
+// import SurveyFields from "./containers/SurveyFields";
+// import Confirmation from "./containers/Confirmation";
+// import Success from "./containers/Success";
 
 import AppliedRoute from "./components/AppliedRoute";
 
@@ -19,10 +19,10 @@ export default ({ childProps }) =>
     <AppliedRoute path="/login" exact component={Login} props={childProps} />
     <AppliedRoute path="/signup" exact component={Signup} props={childProps} />
 
-    <AppliedRoute path="/AccountFields" exact component={AccountFields} props={childProps} />
+    {/* <AppliedRoute path="/AccountFields" exact component={AccountFields} props={childProps} />
     <AppliedRoute path="/SurveyFields" exact component={SurveyFields} props={childProps} />
     <AppliedRoute path="/Confirmation" exact component={Confirmation} props={childProps} />
-    <AppliedRoute path="/Success" exact component={Success} props={childProps} />
+    <AppliedRoute path="/Success" exact component={Success} props={childProps} /> */}
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;
