@@ -1,10 +1,31 @@
 import React, { Component } from "react";
+import { ButtonGroup, ButtonToolbar, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import Slider from 'react-rangeslider'
 import {values} from '../lib/radiobox-value';
 // var getRadioOrCheckboxValue     = require('../lib/radiobox-value')
 var getRadioOrCheckboxValue     = values;
 
-export default class SurveyFields extends Component {
+// https://material-ui.com/lab/slider/
+// https://whoisandy.github.io/react-rangeslider/#
 
+const styles = {
+    root: {
+      width: 300,
+    },
+    slider: {
+      padding: '22px 0px',
+    },
+  };
+
+export default class SurveyFields extends Component {
+    state = {
+        value: 3,
+    };
+
+    handleChange = (event, value) => {
+        this.setState({ value });
+    };
+    
 
     renderOptions(type, name, value, index) {
         var isChecked = function() {
@@ -23,6 +44,9 @@ export default class SurveyFields extends Component {
     }
 
     render() {
+
+        const { classes } = this.props;
+    const { value } = this.state;
         return (
             <div>
                 <h2>Survey Question</h2>
@@ -35,10 +59,42 @@ export default class SurveyFields extends Component {
                         <span className="label">Favourite Colours</span>
                         {['Blue', 'Red', 'Orange', 'Green'].map(this.renderOptions.bind(this, 'checkbox', 'colours'))}
                     </li>
-                    <li className="form-footer">
-                        <button className="btn -default pull-left" onClick={this.props.previousStep}>Back</button>
-                        <button className="btn -primary pull-right" onClick={this.nextStep}>Save &amp; Continue</button>
-                    </li>
+                    <form class="range-field my-4 w-100">
+                        <input type="range" min="0" max="100" />
+                    </form>
+                    <div className={classes.root}>
+                        <Slider
+                        classes={{ container: classes.slider }}
+                        value={value}
+                        min={0}
+                        max={6}
+                        step={1}
+                        onChange={this.handleChange}
+                        />
+                    </div>
+                    <ButtonToolbar>
+                        <ButtonGroup>
+                            <Button
+                                bsSize="large"
+                                onClick={this.props.previousStep}
+                                >
+                                Back
+                            </Button>
+                        </ButtonGroup>
+                        <div className="btn -default pull-right">
+                        <ButtonGroup>
+                            <Button
+                                bsSize="large"
+                                // onClick={ this.saveAndContinue }
+                                onClick={this.nextStep}
+                                >
+                                Save &amp; Continue
+                                {/* Save and Continue */}
+                            </Button>
+                        </ButtonGroup>
+                        </div>
+                    </ButtonToolbar>
+
                 </ul>
             </div>
         )
@@ -58,3 +114,7 @@ export default class SurveyFields extends Component {
         this.props.nextStep()
     }
 }
+
+// StepSlider.propTypes = {
+//     classes: PropTypes.object.isRequired,
+//   };

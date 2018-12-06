@@ -84,7 +84,7 @@ export default class Signup extends Component {
         }
 
         return (
-            <div>
+            <div className="Signup">
                 <span className="progress-step">Step {this.state.step}</span>
                 <progress className="progress" style={style}></progress>
                 {this.showStep()}
