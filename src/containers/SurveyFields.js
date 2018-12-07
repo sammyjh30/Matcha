@@ -46,32 +46,47 @@ export default class SurveyFields extends Component {
     render() {
 
         const { classes } = this.props;
-    const { value } = this.state;
+        const { value } = this.state;
+        
         return (
             <div>
-                <h2>Survey Question</h2>
+                <ControlLabel>Your Preferences</ControlLabel>
                 <ul className="form-fields">
-                    <li className="radio">
+                    {/* <li className="radio">
                         <span className="label">Age</span>
                         {['18-26-', '27-38', '39-50', '51-62'].map(this.renderOptions.bind(this, 'radio', 'age'))}
                     </li>
                     <li className="checkbox">
                         <span className="label">Favourite Colours</span>
                         {['Blue', 'Red', 'Orange', 'Green'].map(this.renderOptions.bind(this, 'checkbox', 'colours'))}
-                    </li>
-                    <form class="range-field my-4 w-100">
-                        <input type="range" min="0" max="100" />
-                    </form>
-                    <div className={classes.root}>
-                        <Slider
-                        classes={{ container: classes.slider }}
-                        value={value}
-                        min={0}
-                        max={6}
-                        step={1}
-                        onChange={this.handleChange}
+                    </li> */}
+                    {/* <form class="range-field my-4 w-100">
+                        <input type="range" min="0" max="1" step="0.1" defaultValue="0.5" />
+                    </form> */}
+                    <FormGroup controlId="name" bsSize="large">
+                        <ControlLabel>Your gender</ControlLabel>
+                        <FormControl
+                        autoFocus
+                        type="range"
+                        min="0" max="1" step="0.01" defaultValue="0.5"
+                        // defaultValue={ this.props.fieldValues.gender } 
+                        // onChange={({target}) => this.setState({name: target.value})}
                         />
-                    </div>
+                    </FormGroup>
+
+                    <FormGroup controlId="name" bsSize="large">
+                        <ControlLabel>Your Interest</ControlLabel>
+                        <FormControl
+                        autoFocus
+                        type="range"
+                        min="0" max="1" step="0.01" defaultValue="0.5"
+                        // defaultValue={ this.props.fieldValues.preference } 
+                        // onChange={({target}) => this.setState({name: target.value})}
+                        />
+                    </FormGroup>
+                    {/* <form class="range-field my-4 w-100">
+                        <input type="range" min="0" max="1" step="0.1" defaultValue="0.5" />
+                    </form> */}
                     <ButtonToolbar>
                         <ButtonGroup>
                             <Button
@@ -89,12 +104,10 @@ export default class SurveyFields extends Component {
                                 onClick={this.nextStep}
                                 >
                                 Save &amp; Continue
-                                {/* Save and Continue */}
                             </Button>
                         </ButtonGroup>
                         </div>
                     </ButtonToolbar>
-
                 </ul>
             </div>
         )
@@ -114,7 +127,3 @@ export default class SurveyFields extends Component {
         this.props.nextStep()
     }
 }
-
-// StepSlider.propTypes = {
-//     classes: PropTypes.object.isRequired,
-//   };
