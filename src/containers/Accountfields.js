@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { ButtonGroup, ButtonToolbar, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import ReactDOM from 'react-dom';
-// import DayPickerInput from 'react-day-picker/DayPickerInput';
-// import 'react-day-picker/lib/style.css';
 import moment from 'moment';
 import Calendar from 'ciqu-react-calendar';
 
@@ -20,87 +18,91 @@ export default class AccountFields extends Component {
     }
 
     onChange = (value, inputValue) => {
-    console.log(value.format('YYYY-MM-DD'))
-    this.setState({value})
-  }
-  onOpenChange = (status) => {
-    console.log('open status: ' + status)
-  }
-  disabledDate = (currentDate, inputValue) => {
-    return false
-  }
-    
+        console.log(value.format('YYYY-MM-DD'))
+        this.setState({ value })
+    }
+    onOpenChange = (status) => {
+        console.log('open status: ' + status)
+    }
+    disabledDate = (currentDate, inputValue) => {
+        return false
+    }
+
     saveAndContinue(e) {
         e.preventDefault()
 
         //Get values via this.refs
         var data = {
-            name        : this.state.name,
-            password    : this.state.password,
-            email       : this.state.email
+            name: this.state.name,
+            password: this.state.password,
+            email: this.state.email
         }
 
         this.props.saveValues(data)
         this.props.nextStep()
     }
-    
+
     render() {
-        const {onChange, onOpenChange, disabledDate} = this
-        return ( 
+        const { onChange, onOpenChange, disabledDate } = this;
+        const closedCal = {
+            margin: "0px 0px 50px 0px"
+        };
+        return (
             <div>
-                {/* <h2>Account Details</h2> */}
                 <ControlLabel>Account Details</ControlLabel>
                 <ul className="form-fields">
                     <FormGroup controlId="name" bsSize="large">
                         <ControlLabel>Name</ControlLabel>
                         <FormControl
-                        autoFocus
-                        type="text"
-                        defaultValue={ this.props.fieldValues.name } 
-                        onChange={({target}) => this.setState({name: target.value})}
+                            autoFocus
+                            type="text"
+                            defaultValue={this.props.fieldValues.name}
+                            onChange={({ target }) => this.setState({ name: target.value })}
                         />
                     </FormGroup>
 
                     <FormGroup controlId="password" bsSize="large">
                         <ControlLabel>Password</ControlLabel>
                         <FormControl
-                        autoFocus
-                        type="password"
-                        defaultValue={ this.props.fieldValues.password } 
-                        onChange={({target}) => this.setState({password: target.value})}
+                            autoFocus
+                            type="password"
+                            defaultValue={this.props.fieldValues.password}
+                            onChange={({ target }) => this.setState({ password: target.value })}
                         />
                     </FormGroup>
 
                     <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>
                         <FormControl
-                        autoFocus
-                        type="email"
-                        defaultValue={ this.props.fieldValues.email } 
-                        onChange={({target}) => this.setState({email: target.value})}
+                            autoFocus
+                            type="email"
+                            defaultValue={this.props.fieldValues.email}
+                            onChange={({ target }) => this.setState({ email: target.value })}
                         />
                     </FormGroup>
 
                     <FormGroup controlId="birthdate" bsSize="large">
                         <ControlLabel>Birthdate</ControlLabel>
-                        <Calendar
-                            onChange={onChange}
-                            value={this.state.value}
-                            allowClear={true}
-                            disabled={false}
-                            placeholder={'please input date'}
-                            format={'YYYY-MM-DD'}
-                            onOpenChange={onOpenChange}
-                            disabledDate={disabledDate}
-                        />
+                        <div style={closedCal}>
+                            <Calendar
+                                onChange={onChange}
+                                value={this.state.value}
+                                allowClear={true}
+                                disabled={false}
+                                placeholder={'please input date'}
+                                format={'YYYY-MM-DD'}
+                                onOpenChange={onOpenChange}
+                                disabledDate={disabledDate}
+                            />
+                        </div>
                     </FormGroup>
 
                     <ButtonToolbar>
                         <ButtonGroup>
                             <Button
                                 bsSize="large"
-                                onClick={ this.saveAndContinue }
-                                >
+                                onClick={this.saveAndContinue}
+                            >
                                 Save &amp; Continue
                             </Button>
                         </ButtonGroup>
