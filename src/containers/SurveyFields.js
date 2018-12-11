@@ -11,6 +11,20 @@ export default class SurveyFields extends Component {
         }
         this.nextStep = this.nextStep.bind(this);
     }
+
+    // nextStep() {
+    nextStep(e) {
+        e.preventDefault()
+
+        //Get values via this.refs
+        var data = {
+            gender: this.state.gender,
+            pref: this.state.pref
+        }
+
+        this.props.saveValues(data)
+        this.props.nextStep()
+    }
  
     render() {
         return (
@@ -25,7 +39,7 @@ export default class SurveyFields extends Component {
                         type="range"
                         min="0" max="1" step="0.01" 
                         defaultValue={ this.props.fieldValues.gender } 
-                        onChange={({target}) => this.setState({name: target.value})}
+                        onChange={({target}) => this.setState({gender: target.value})}
                         />
                     </FormGroup>
 
@@ -35,8 +49,8 @@ export default class SurveyFields extends Component {
                         autoFocus
                         type="range"
                         min="0" max="1" step="0.01"
-                        defaultValue={ this.props.fieldValues.pref } 
-                        onChange={({target}) => this.setState({name: target.value})}
+                        defaultValue={this.props.fieldValues.pref} 
+                        onChange={({target}) => this.setState({pref: target.value})}
                         />
                     </FormGroup>
                     <ButtonToolbar>
@@ -52,7 +66,6 @@ export default class SurveyFields extends Component {
                         <ButtonGroup>
                             <Button
                                 bsSize="large"
-                                // onClick={ this.saveAndContinue }
                                 onClick={this.nextStep}
                                 >
                                 Submit
@@ -63,19 +76,5 @@ export default class SurveyFields extends Component {
                 </ul>
             </div>
         )
-    }
-
-    // nextStep() {
-    nextStep(e) {
-        e.preventDefault()
-
-        //Get values via this.refs
-        var data = {
-            gender: this.state.gender,
-            pref: this.state.pref
-        }
-
-        this.props.saveValues(data)
-        this.props.nextStep()
     }
 }

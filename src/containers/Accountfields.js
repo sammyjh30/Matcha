@@ -41,6 +41,11 @@ export default class AccountFields extends Component {
         this.props.nextStep()
     }
 
+    //Todo:
+    // First Name, Last Name, UserName
+    // Confirm Password
+    // Cannot Submit/Continue unless all fields are filled
+
     render() {
         const { onChange, onOpenChange, disabledDate } = this;
 

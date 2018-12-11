@@ -10,8 +10,6 @@ import SurveyFields from "../containers/SurveyFields";
 import Confirmation from "../containers/Confirmation";
 import Success from "../containers/Success";
 
-//name = user_name
-//preferences = pref
 var fieldValues = {
     user_name        : null,
     email       : null,
@@ -19,7 +17,6 @@ var fieldValues = {
     birthdate   : null,
     gender      : null,
     pref        : null
-    // preference  : null
 }
 
 export default class Signup extends Component {
