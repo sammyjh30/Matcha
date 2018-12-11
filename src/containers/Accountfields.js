@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ButtonGroup, ButtonToolbar, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import ReactDOM from 'react-dom';
-import moment from 'moment';
+import moment, { now } from 'moment';
 import Calendar from 'ciqu-react-calendar';
 
 export default class AccountFields extends Component {
@@ -12,14 +12,14 @@ export default class AccountFields extends Component {
             name: "",
             password: "",
             email: "",
-            value: moment(),
+            birthdate: ""
         }
         this.saveAndContinue = this.saveAndContinue.bind(this);
     }
 
     onChange = (value, inputValue) => {
         console.log(value.format('YYYY-MM-DD'))
-        this.setState({ value })
+        this.setState({ birthdate: value })
     }
     onOpenChange = (status) => {
         console.log('open status: ' + status)
@@ -35,7 +35,8 @@ export default class AccountFields extends Component {
         var data = {
             name: this.state.name,
             password: this.state.password,
-            email: this.state.email
+            email: this.state.email,
+            birthdate: this.state.birthdate
         }
 
         this.props.saveValues(data)
@@ -44,9 +45,11 @@ export default class AccountFields extends Component {
 
     render() {
         const { onChange, onOpenChange, disabledDate } = this;
+
         const closedCal = {
             margin: "0px 0px 50px 0px"
         };
+
         return (
             <div>
                 <ControlLabel>Account Details</ControlLabel>
@@ -86,10 +89,9 @@ export default class AccountFields extends Component {
                         <div style={closedCal}>
                             <Calendar
                                 onChange={onChange}
-                                value={this.state.value}
                                 allowClear={true}
                                 disabled={false}
-                                placeholder={'please input date'}
+                                defaultValue={this.props.fieldValues.birthdate}
                                 format={'YYYY-MM-DD'}
                                 onOpenChange={onOpenChange}
                                 disabledDate={disabledDate}

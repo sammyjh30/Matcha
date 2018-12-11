@@ -14,7 +14,7 @@ var fieldValues = {
     name        : null,
     email       : null,
     password    : null,
-    age         : null,
+    birthdate    : null,
     colours      : []
 }
 
