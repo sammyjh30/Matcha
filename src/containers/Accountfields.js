@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { ButtonGroup, ButtonToolbar, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import ReactDOM from 'react-dom';
-import moment, { now } from 'moment';
 import Calendar from 'ciqu-react-calendar';
 
 export default class AccountFields extends Component {
@@ -9,7 +7,7 @@ export default class AccountFields extends Component {
         super(props);
 
         this.state = {
-            name: "",
+            user_name: "",
             password: "",
             email: "",
             birthdate: ""
@@ -33,7 +31,7 @@ export default class AccountFields extends Component {
 
         //Get values via this.refs
         var data = {
-            name: this.state.name,
+            user_name: this.state.user_name,
             password: this.state.password,
             email: this.state.email,
             birthdate: this.state.birthdate
@@ -54,13 +52,13 @@ export default class AccountFields extends Component {
             <div>
                 <ControlLabel>Account Details</ControlLabel>
                 <ul className="form-fields">
-                    <FormGroup controlId="name" bsSize="large">
+                    <FormGroup controlId="user_name" bsSize="large">
                         <ControlLabel>Name</ControlLabel>
                         <FormControl
                             autoFocus
                             type="text"
-                            defaultValue={this.props.fieldValues.name}
-                            onChange={({ target }) => this.setState({ name: target.value })}
+                            defaultValue={this.props.fieldValues.user_name}
+                            onChange={({ target }) => this.setState({ user_name: target.value })}
                         />
                     </FormGroup>
 

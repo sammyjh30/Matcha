@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Signup.css";
 import { Route, Switch } from "react-router-dom";
 import AppliedRoute from "../components/AppliedRoute";
@@ -10,12 +10,16 @@ import SurveyFields from "../containers/SurveyFields";
 import Confirmation from "../containers/Confirmation";
 import Success from "../containers/Success";
 
+//name = user_name
+//preferences = pref
 var fieldValues = {
-    name        : null,
+    user_name        : null,
     email       : null,
     password    : null,
-    birthdate    : null,
-    colours      : []
+    birthdate   : null,
+    gender      : null,
+    pref        : null
+    // preference  : null
 }
 
 export default class Signup extends Component {

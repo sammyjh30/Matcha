@@ -1,23 +1,92 @@
 import React, { Component } from "react";
+import { HelpBlock, ButtonGroup, ButtonToolbar, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import LoaderButton from '../components/LoaderButton';
 
 export default class Confirmation extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            isLoading: false,
+            confirmationCode: "",
+            newUser: null
+        };
+    }
+
+    validateForm() {
+        return (
+            this.state.email.length > 0 &&
+            this.state.password.length > 0 &&
+            this.state.password === this.state.confirmPassword
+        );
+    }
+    
+    validateConfirmationForm() {
+        return this.state.confirmationCode.length > 0;
+    }
+
+    handleChange = event => {
+        this.setState({
+            [event.target.id]: event.target.value
+        });
+      }
+
+    handleSubmit = async event => {
+    event.preventDefault();
+
+        this.setState({ isLoading: true });
+
+        this.setState({ newUser: "test" });
+
+        this.setState({ isLoading: false });
+    }
+
+    handleConfirmationSubmit = async event => {
+        event.preventDefault();
+
+        this.setState({ isLoading: true });
+    }
+
     render() {
         return (
-            <div>
-                <h2>Confirm Registration</h2>
-                <ul>
-                    <li><b>Name:</b> {this.props.fieldValues.name}</li>
-                    <li><b>Email:</b> {this.props.fieldValues.email}</li>
-                    <li><b>Age:</b> {this.props.fieldValues.age}</li>
-                    <li><b>Colours:</b> {this.props.fieldValues.colours.join(', ')}</li>
-                </ul>
-                <ul className="form-fields">
-                    <li className="form-footer">
-                        <button className="btn -default pull-left" onClick={this.props.previousStep}>Back</button>
-                        <buttin className="btn - primary pull-right" onClick={this.props.submitRegistration}>Submist Registration</buttin>
-                    </li>
-                </ul>
-            </div>
+        <div>
+            <form onSubmit={this.handleConfirmationSubmit}>
+                <FormGroup controlId="confirmationCode" bsSize="large">
+                    <ControlLabel>Confirmation Code</ControlLabel>
+                    <FormControl
+                    autoFocus
+                    type="tel"
+                    defaultValue={this.state.confirmationCode}
+                    onChange={this.handleChange}
+                />
+                <HelpBlock>Please check your email for the code.</HelpBlock>
+                </FormGroup>
+
+                <LoaderButton
+                block
+                bsSize="large"
+                disabled={!this.validateConfirmationForm()}
+                type="submit"
+                isLoading={this.state.isLoading}
+                text="Verify"
+                loadingText="Verifying…"
+                />
+
+
+                {/* Temporary for test */}
+                <ButtonToolbar>
+                        <ButtonGroup>
+                            <Button
+                                bsSize="large"
+                                onClick={this.props.previousStep}
+                                >
+                                Back
+                            </Button>
+                        </ButtonGroup>
+                       
+                    </ButtonToolbar>
+                    </form>
+        </div>
         )
     }
 }
